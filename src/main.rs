@@ -2,9 +2,10 @@ use chrono::prelude::*;
 
 mod day_1;
 mod day_2;
+mod day_3;
 
 fn main() {
-    let challenges = [day1, day2];
+    let challenges = [day1, day2, day3];
 
     let start_date = Utc.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Utc::now();
@@ -39,5 +40,17 @@ fn day2() {
     println!(
         "Total score if I follow the right strategy: {}",
         day_2::get_total_score_of_the_right_strategy().unwrap()
+    );
+}
+
+fn day3() {
+    println!(
+        "Sum of the priorities of item that appears twice: {}",
+        day_3::priorities_sum_of_same_items()
+    );
+
+    println!(
+        "Sum of the priorities of item that appears twice: {}",
+        day_3::priorities_sum_of_group_item()
     );
 }
