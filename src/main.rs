@@ -3,9 +3,10 @@ use chrono::prelude::*;
 mod day_1;
 mod day_2;
 mod day_3;
+mod day_4;
 
 fn main() {
-    let challenges = [day1, day2, day3];
+    let challenges = [day1, day2, day3, day4];
 
     let start_date = Utc.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Utc::now();
@@ -52,5 +53,17 @@ fn day3() {
     println!(
         "Sum of the priorities of item that appears twice: {}",
         day_3::priorities_sum_of_group_item()
+    );
+}
+
+fn day4() {
+    println!(
+        "Total of number of pairs where one fully contains the other: {}",
+        day_4::number_of_containing_pairs()
+    );
+
+    println!(
+        "Total of number of pairs where one overlaps with the other: {}",
+        day_4::number_of_overlapping_pairs()
     );
 }
