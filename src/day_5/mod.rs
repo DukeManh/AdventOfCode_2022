@@ -62,18 +62,16 @@ pub fn move_crates(mover: fn(&mut Vec<Vec<char>>, &usize, &usize, &usize)) -> St
         }
     });
 
-    instructions.lines().for_each(|line| {
-        let re = Regex::new(r"move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)").unwrap();
-        for cap in re.captures_iter(line) {
-            let (n, a, b) = (
-                cap[1].parse::<usize>().unwrap(),
-                cap[2].parse::<usize>().unwrap() - 1,
-                cap[3].parse::<usize>().unwrap() - 1,
-            );
+    let re = Regex::new(r"move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)").unwrap();
+    for cap in re.captures_iter(instructions) {
+        let (n, a, b) = (
+            cap[1].parse::<usize>().unwrap(),
+            cap[2].parse::<usize>().unwrap() - 1,
+            cap[3].parse::<usize>().unwrap() - 1,
+        );
 
-            mover(&mut stacks, &n, &a, &b);
-        }
-    });
+        mover(&mut stacks, &n, &a, &b);
+    }
 
     stacks
         .into_iter()
