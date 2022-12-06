@@ -4,12 +4,13 @@ mod day_1;
 mod day_2;
 mod day_3;
 mod day_4;
+mod day_5;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4];
+    let challenges = [day1, day2, day3, day4, day5];
 
-    let start_date = Utc.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
-    let today = Utc::now();
+    let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
+    let today = Local::now();
 
     let day_index = (today.day() - start_date.day()) as usize;
     if day_index > challenges.len() - 1 {
@@ -65,5 +66,16 @@ fn day4() {
     println!(
         "Total of number of pairs where one overlaps with the other: {}",
         day_4::number_of_overlapping_pairs()
+    );
+}
+
+fn day5() {
+    println!(
+        "Crate that end up sitting on top of each stack using CreateMover 9000: {}",
+        day_5::crates_end_up_on_top_with_9000()
+    );
+    println!(
+        "Crate that end up sitting on top of each stack using CreateMover 9001: {}",
+        day_5::crates_end_up_on_top_with_9001()
     );
 }
