@@ -5,9 +5,10 @@ mod day_2;
 mod day_3;
 mod day_4;
 mod day_5;
+mod day_6;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4, day5];
+    let challenges = [day1, day2, day3, day4, day5, day6];
 
     let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Local::now();
@@ -77,5 +78,17 @@ fn day5() {
     println!(
         "Crate that end up sitting on top of each stack using CreateMover 9001: {}",
         day_5::crates_end_up_on_top_with_9001()
+    );
+}
+
+fn day6() {
+    println!(
+        "The first maker appears after {} signals",
+        day_6::first_maker_appear_after(4)
+    );
+
+    println!(
+        "The first message appears after {} signals",
+        day_6::first_maker_appear_after(14)
     );
 }
