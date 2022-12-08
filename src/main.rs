@@ -6,9 +6,10 @@ mod day_3;
 mod day_4;
 mod day_5;
 mod day_6;
+mod day_7;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4, day5, day6];
+    let challenges = [day1, day2, day3, day4, day5, day6, day7];
 
     let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Local::now();
@@ -84,11 +85,22 @@ fn day5() {
 fn day6() {
     println!(
         "The first maker appears after {} signals",
-        day_6::first_maker_appear_after(4)
+        day_6::first_marker_appear_after(4)
     );
 
     println!(
         "The first message appears after {} signals",
-        day_6::first_maker_appear_after(14)
+        day_6::first_marker_appear_after(14)
+    );
+}
+
+fn day7() {
+    println!(
+        "Total size of directors with size below 100000: {}",
+        day_7::total_size_of_directory_under_threshold(100000)
+    );
+    println!(
+        "The smallest directory that needs to be deleted to reserve enough space for update: {}",
+        day_7::smallest_dir_to_be_deleted(70000000, 30000000)
     );
 }

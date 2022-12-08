@@ -6,7 +6,7 @@ use std::fs::read_to_string;
  * Increment j by one, if the chars[j] exists set i to where it previously appears + 1
  * Keep sliding j until the distance between i and j is equal to the required distinct signals, and j + 1 is where the first packet starts
  */
-pub fn first_maker_appear_after(required_distinct_signal: usize) -> usize {
+pub fn first_marker_appear_after(required_distinct_signal: usize) -> usize {
     let input = read_to_string("src/day_6/input.txt").unwrap();
 
     let chars = input.chars().collect::<Vec<char>>();
@@ -51,5 +51,5 @@ pub fn first_maker_appear_after(required_distinct_signal: usize) -> usize {
         }
     }
 
-    panic!("Unable to find the market from the given signal input");
+    panic!("Unable to find the marker from the given signal input");
 }
