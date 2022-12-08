@@ -1,5 +1,3 @@
-// Let's be fancy today and use struct
-
 use std::{
     fs::read_to_string,
     num::ParseIntError,
@@ -42,14 +40,11 @@ pub fn total_size_of_directory_under_threshold(threshold: u32) -> u32 {
 
     let mut root = Dir::new(String::from("/"));
 
-    let mut x = input.lines().into_iter();
-    x.next().unwrap();
-
-    read_terminal(&mut x, &mut root);
+    let mut cursor = input.lines().into_iter();
+    read_terminal(&mut cursor, &mut root);
 
     let mut total_size_below_threshold = 0u32;
     calculate_size(&root, &threshold, &mut total_size_below_threshold);
-
     total_size_below_threshold
 }
 
@@ -58,21 +53,15 @@ pub fn smallest_dir_to_be_deleted(total_disk_size: u32, space_needed: u32) -> u3
 
     let mut root = Dir::new(String::from("/"));
 
-    let mut x = input.lines().into_iter();
-    x.next().unwrap();
-    read_terminal(&mut x, &mut root);
+    let mut cursor = input.lines().into_iter();
+    read_terminal(&mut cursor, &mut root);
 
     let total_size = calculate_size(&root, &0, &mut 0);
+    let unused_space = total_disk_size - total_size;
     let mut smallest = total_size;
+    smallest_dir(&root, &unused_space, &space_needed, &mut smallest);
 
-    smallest_dir(
-        &root,
-        &(total_disk_size - total_size),
-        &space_needed,
-        &mut smallest,
-    );
-
-    return smallest;
+    smallest
 }
 
 fn read_terminal(lines: &mut Lines, current_dir: &mut Dir) {
@@ -95,13 +84,13 @@ fn read_terminal(lines: &mut Lines, current_dir: &mut Dir) {
             }
         }
 
-        if let Some(x) = cd.split(" ").skip(2).next() {
-            if x == ".." {
+        if let Some(path) = cd.split(" ").skip(2).next() {
+            if path == ".." {
                 return;
             }
 
             for mut dir in current_dir.dirs.iter_mut() {
-                if dir.as_mut().path.ends_with(&(x.to_string() + "/")) {
+                if dir.as_mut().path.ends_with(&(path.to_string() + "/")) {
                     read_terminal(lines, &mut dir);
                     break;
                 }
