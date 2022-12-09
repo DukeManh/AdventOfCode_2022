@@ -7,20 +7,32 @@ mod day_4;
 mod day_5;
 mod day_6;
 mod day_7;
+mod day_8;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4, day5, day6, day7];
+    let challenges = [day1, day2, day3, day4, day5, day6, day7, day8];
 
     let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Local::now();
 
     let day_index = (today.day() - start_date.day()) as usize;
-    if day_index > challenges.len() - 1 {
-        panic!("Day {} hasn't started yet", day_index + 1)
-    }
 
-    let challenge = challenges[day_index as usize];
-    challenge();
+    if day_index > challenges.len() - 1 {
+        println!(
+            "Day {} hasn't started yet, running previous challenges\n",
+            day_index + 1
+        );
+        challenges
+            .into_iter()
+            .enumerate()
+            .for_each(|(i, challenge)| {
+                println!("Day {}:", i + 1);
+                challenge();
+            })
+    } else {
+        let today_challenge = challenges[day_index as usize];
+        today_challenge();
+    }
 }
 
 fn day1() {
@@ -102,5 +114,17 @@ fn day7() {
     println!(
         "The smallest directory that needs to be deleted to reserve enough space for update: {}",
         day_7::smallest_dir_to_be_deleted(70000000, 30000000)
+    );
+}
+
+fn day8() {
+    println!(
+        "Total number of visible tree: {}",
+        day_8::total_visible_trees("src/day_8/input.txt").unwrap()
+    );
+
+    println!(
+        "The highest scenic score for a tree house: {}",
+        day_8::hightest_scenic_score("src/day_8/input.txt").unwrap()
     );
 }

@@ -66,7 +66,7 @@ pub fn smallest_dir_to_be_deleted(total_disk_size: u32, space_needed: u32) -> u3
 
 fn read_terminal(lines: &mut Lines, current_dir: &mut Dir) {
     if let Some(line) = lines.next() {
-        let mut cd = line.clone();
+        let mut cd = line;
         if line.starts_with("$ ls") {
             while let Some(line) = lines.next() {
                 if line.starts_with("$ cd") {
@@ -90,11 +90,12 @@ fn read_terminal(lines: &mut Lines, current_dir: &mut Dir) {
             }
 
             for mut dir in current_dir.dirs.iter_mut() {
-                if dir.as_mut().path.ends_with(&(path.to_string() + "/")) {
+                if dir.as_mut().path.ends_with(&[path, "/"].join("")) {
                     read_terminal(lines, &mut dir);
                     break;
                 }
             }
+
             read_terminal(lines, current_dir);
         }
     }
