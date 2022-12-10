@@ -8,9 +8,10 @@ mod day_5;
 mod day_6;
 mod day_7;
 mod day_8;
+mod day_9;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4, day5, day6, day7, day8];
+    let challenges = [day1, day2, day3, day4, day5, day6, day7, day8, day9];
 
     let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Local::now();
@@ -126,5 +127,12 @@ fn day8() {
     println!(
         "The highest scenic score for a tree house: {}",
         day_8::hightest_scenic_score("src/day_8/input.txt").unwrap()
+    );
+}
+
+fn day9() {
+    println!(
+        "Total number of positions that the tail visited: {}",
+        day_9::unique_visited_positions("src/day_9/input.txt").unwrap()
     );
 }

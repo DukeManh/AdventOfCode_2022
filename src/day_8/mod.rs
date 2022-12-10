@@ -1,13 +1,13 @@
 use std::{fs::read_to_string, str::FromStr};
 
-enum Direction {
+pub enum Direction {
     U,
     R,
     D,
     L,
 }
 
-struct Grid(Vec<Vec<usize>>);
+pub struct Grid(Vec<Vec<usize>>);
 
 // convert the input into a 2d-array grid
 impl FromStr for Grid {
