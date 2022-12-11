@@ -1,6 +1,7 @@
 use chrono::prelude::*;
 
 mod day_1;
+mod day_10;
 mod day_2;
 mod day_3;
 mod day_4;
@@ -11,7 +12,7 @@ mod day_8;
 mod day_9;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4, day5, day6, day7, day8, day9];
+    let challenges = [day1, day2, day3, day4, day5, day6, day7, day8, day9, day10];
 
     let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
     let today = Local::now();
@@ -134,5 +135,17 @@ fn day9() {
     println!(
         "Total number of positions that the tail visited: {}",
         day_9::unique_visited_positions("src/day_9/input.txt").unwrap()
+    );
+}
+
+fn day10() {
+    println!(
+        "Total signal strength: {}",
+        day_10::total_signal_strength("src/day_10/input.txt").unwrap()
+    );
+
+    println!(
+        "Rendered image:\n{}",
+        day_10::render_image("src/day_10/input.txt").unwrap()
     );
 }
