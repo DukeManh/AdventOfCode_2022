@@ -1,4 +1,5 @@
 use chrono::prelude::*;
+use std::env;
 
 mod day_1;
 mod day_10;
@@ -13,11 +14,26 @@ mod day_9;
 
 fn main() {
     let challenges = [day1, day2, day3, day4, day5, day6, day7, day8, day9, day10];
+    let mut day_index = 0usize;
 
-    let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
-    let today = Local::now();
+    // run a specific challenge from the cli arguments, 1 -> 30
+    if env::args().len() >= 2 {
+        let day = env::args().skip(1).next().unwrap();
 
-    let day_index = (today.day() - start_date.day()) as usize;
+        match day.parse::<usize>() {
+            Ok(index) => day_index = index - 1,
+            Err(_) => panic!("'{}' is not a valid day number", day),
+        }
+    }
+
+    // if no argument provided, run today's
+    day_index = if day_index > 0 {
+        day_index
+    } else {
+        let start_date = Local.with_ymd_and_hms(2022, 12, 1, 0, 0, 0).unwrap();
+        let today = Local::now();
+        (today.day() - start_date.day()) as usize
+    };
 
     if day_index > challenges.len() - 1 {
         println!(
@@ -146,6 +162,6 @@ fn day10() {
 
     println!(
         "Rendered image:\n{}",
-        day_10::render_image("src/day_10/input.txt").unwrap()
+        day_10::render_image("src/day_10/input.txt", Some(1)).unwrap()
     );
 }
