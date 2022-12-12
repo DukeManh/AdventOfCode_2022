@@ -3,6 +3,7 @@ use std::env;
 
 mod day_1;
 mod day_10;
+mod day_11;
 mod day_2;
 mod day_3;
 mod day_4;
@@ -13,7 +14,9 @@ mod day_8;
 mod day_9;
 
 fn main() {
-    let challenges = [day1, day2, day3, day4, day5, day6, day7, day8, day9, day10];
+    let challenges = [
+        day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11,
+    ];
     let mut day_index = 0usize;
 
     // run a specific challenge from the cli arguments, 1 -> 30
@@ -163,5 +166,12 @@ fn day10() {
     println!(
         "Rendered image:\n{}",
         day_10::render_image("src/day_10/input.txt", Some(1)).unwrap()
+    );
+}
+
+fn day11() {
+    println!(
+        "Monkey business score: {}",
+        day_11::monkey_business("src/day_11/input.txt").unwrap()
     );
 }
