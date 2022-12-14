@@ -5,6 +5,7 @@ mod day_1;
 mod day_10;
 mod day_11;
 mod day_12;
+mod day_13;
 mod day_2;
 mod day_3;
 mod day_4;
@@ -16,7 +17,7 @@ mod day_9;
 
 fn main() {
     let challenges = [
-        day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12,
+        day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13,
     ];
     let mut day_index = 0usize;
 
@@ -179,4 +180,11 @@ fn day11() {
 
 fn day12() {
     println!("{}", day_12::fewest_steps("src/day_12/input.txt").unwrap());
+}
+
+fn day13() {
+    println!(
+        "Sum of indices of pairs of packets that are in the right order: {}",
+        day_13::sum_of_pair_indices("src/day_13/input.txt").unwrap()
+    );
 }
