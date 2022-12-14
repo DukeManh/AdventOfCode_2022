@@ -42,7 +42,11 @@ fn parse_packet(s: &str) -> Vec<Packet> {
             } else if c == ',' {
                 j += 1;
             } else {
-                let int = c.to_digit(10).unwrap() as u8;
+                let mut f = j;
+                while !['[', ']', ','].contains(&chars[f]) {
+                    f += 1;
+                }
+                let int = s[j..f].parse::<u8>().unwrap();
                 packets.push(Packet::Int(int));
                 j += 1;
             }
